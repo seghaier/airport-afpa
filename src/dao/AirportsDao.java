@@ -44,7 +44,7 @@ public class AirportsDao extends Dao{
                 
                 while(rs.next()){
                     
-                    Airports el = new Airports(rs.getString("id"), rs.getString("city"),
+                    Airports el = new Airports(rs.getString("aita"), rs.getString("city"),
                             rs.getString("pays"));
                     listeairports.add(el);
                 }

@@ -27,7 +27,7 @@ public class Airafpa {
         // pour afficher la liste :
         AirportsDao el = new AirportsDao();
     ArrayList<Airports> listeaireport = el.getAll();
-        System.out.println("on a "+ listeaireport.size() + " les Airoport :");  
+        System.out.println("on a "+ listeaireport.size() + " Airoport :");  
         System.out.println();
         
         for(Airports ai : listeaireport) {
