@@ -31,7 +31,7 @@ public class Airafpa {
         System.out.println();
         
         for(Airports ai : listeaireport) {
-            System.out.println("N° " + ai.getAita()+ "/ " + ai.getCity()+ " " + ai.getPays());
+            System.out.println(ai.getAita()+ " " + ai.getCity()+ " " + ai.getPays());
     }
         
     }
