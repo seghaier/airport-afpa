@@ -24,15 +24,15 @@ public class Airafpa {
      */
     public static void main(String[] args) {
         
-        // pour afficher la liste :
-        AirportsDao el = new AirportsDao();
-    ArrayList<Airports> listeaireport = el.getAll();
-        System.out.println("on a "+ listeaireport.size() + " Airoport :");  
-        System.out.println();
-        
-        for(Airports ai : listeaireport) {
-            System.out.println(ai.getAita()+ " " + ai.getCity()+ " " + ai.getPays());
-    }
+        // pour afficher la liste des Aireports:
+//        AirportsDao el = new AirportsDao();
+//    ArrayList<Airports> listeaireport = el.getAll();
+//        System.out.println("on a "+ listeaireport.size() + " Airoport :");  
+//        System.out.println();
+//        
+//        for(Airports ai : listeaireport) {
+//            System.out.println(ai.getAita()+ " " + ai.getCity()+ " " + ai.getPays());
+//    }
         
     }
     
