@@ -43,17 +43,26 @@ public class AirportsDaoTest {
     /**
      * Test of creer method, of class AirportsDao.
      */
-//    @Test
-//    public void testCreer() {
-//        System.out.println("creer");
-//        Object obj = null;
-//        AirportsDao instance = new AirportsDao();
-//        boolean expResult = false;
-//        boolean result = instance.creer(obj);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+    @Test
+    public void testcreate() {
+        System.out.println("create");
+        // create object airport
+        AirportsDao airportDao = new AirportsDao();
+        
+        Airports airport = new Airports("TUN", "Tunis", "Tunisie");
+
+        // find airport  create 
+        Airports expResult = airportDao.find(airport.getAita());
+        System.out.println(expResult);
+        // if find aita is empty
+        if (expResult.getAita().isEmpty()) {
+            // insert airport in table
+            Airports result = airportDao.create(airport);   
+            // find airport
+            expResult = airportDao.find(airport.getAita());
+            assertEquals(expResult, result);          
+        }
+    }
 //
 //    /**
 //     * Test of supprimer method, of class AirportsDao.
@@ -73,27 +82,27 @@ public class AirportsDaoTest {
     /**
      * Test of getAll method, of class AirportsDao.
      */
-    @Test
-    public void testGetAll() {
-        System.out.println("getAll");
-        String expResult = "";
-        String result ="";
-        
-        AirportsDao instance = new AirportsDao();
-        
-        
-        ArrayList<Airports> listeaireport = instance.getAll();
-        
-        
-        for (Airports airports : listeaireport) {
-            result += airports.toString();
-            expResult += instance.find(airports.getAita());
-            System.out.println("1 --- " + result);
-            System.out.println("2 ---"+ expResult);
-        }
-        assertEquals(expResult, result);
-        
-    }
+//    @Test
+//    public void testGetAll() {
+//        System.out.println("getAll");
+//        String expResult = "";
+//        String result ="";
+//        
+//        AirportsDao instance = new AirportsDao();
+//        
+//        
+//        ArrayList<Airports> listeaireport = instance.getAll();
+//        
+//        
+//        for (Airports airports : listeaireport) {
+//            result += airports.toString();
+//            expResult += instance.find(airports.getAita());
+//            System.out.println(" --- " + result +" " + expResult);
+//            //System.out.println("2 ---"+ expResult);
+//        }
+//        assertEquals(expResult, result);
+//        
+//    }
 
     /**
      * Test of getmanager method, of class AirportsDao.

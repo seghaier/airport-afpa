@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import data.Airports;
+import java.sql.PreparedStatement;
 
 /**
  *
@@ -21,11 +22,41 @@ public class AirportsDao extends Dao<Airports,String>{
     @Override
     public Airports create(Airports airports) {
         
-        return airports;
+        Airports airportCreate = new Airports();
+        if (this.bddmanager.connect()) {
+
+            try {
+
+                // create requete 
+                String requete = "INSERT INTO airports (aita, city, country) VALUES (?,?,?)";
+                // prepared requete 
+                PreparedStatement pst = this.bddmanager.getConnectionManager().prepareStatement(requete);
+                // insert value in requete
+                pst.setString(1, airports.getAita());
+                pst.setString(2, airports.getCity());
+                pst.setString(3, airports.getPays());
+                // excute insert row in table
+                pst.executeUpdate();
+                
+                airportCreate = this.find(airports.getAita());
+                
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                return airportCreate;
+            }
+
+        } else {
+            return airportCreate;
+        }
+ 
+        return airportCreate;
+ 
+        
     }
 
     @Override
     public boolean delete(Airports airports) {
+        
         return true;
     }
 
@@ -75,8 +106,8 @@ public class AirportsDao extends Dao<Airports,String>{
                 
                 while(rs.next()){
                     airport.setAita(rs.getString("aita"));
-                    airport.setCity(rs.getString("City"));
-                    airport.setPays(rs.getString("Pays"));
+                    airport.setCity(rs.getString("city"));
+                    airport.setPays(rs.getString("pays"));
                 }
                 
             } catch (SQLException ex) {
@@ -95,6 +126,7 @@ public class AirportsDao extends Dao<Airports,String>{
 
     @Override
     public boolean update(Airports airport) {
+        
         return true;
     }
 
