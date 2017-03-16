@@ -82,6 +82,12 @@ public class Airports {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Airports{" + "aita=" + aita + ", city=" + city + ", pays=" + pays + '}';
+    }
    
+    
    
 }

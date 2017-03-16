@@ -12,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author Formation
  */
-public abstract class Dao<T> {
+public abstract class Dao<T, S> {
    
     protected LiaisonSql bddmanager = null;
 
@@ -21,10 +21,10 @@ public abstract class Dao<T> {
     }
 
 public abstract T create(T obj);
-public abstract void delete(T obj);
-public abstract T update();
+public abstract boolean delete(T obj);
+public abstract boolean update(T obj);
 public abstract ArrayList<T> getAll();
-public abstract T find(T obj);
+public abstract T find(S key);
 
 
 }

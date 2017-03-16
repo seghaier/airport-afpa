@@ -16,22 +16,20 @@ import data.Airports;
  *
  * @author Formation
  */
-public class AirportsDao extends Dao{
+public class AirportsDao extends Dao<Airports,String>{
 
     @Override
-    public Object create(Object obj) {
-        return obj;
-    }
-
-    @Override
-    public void delete(Object obj) {
+    public Airports create(Airports airports) {
         
+        return airports;
     }
 
     @Override
-    public Object update() {
-        return 0;
+    public boolean delete(Airports airports) {
+        return true;
     }
+
+
 
     @Override
     public ArrayList getAll() {
@@ -65,14 +63,14 @@ public class AirportsDao extends Dao{
         return listeairports;
     }
 
-    @Override
-    public Object find(Object obj) {
+     @Override
+    public Airports find(String key) {
         Airports airport = new Airports();
         if(this.bddmanager.connect()) {
             
             try {
                 Statement st = this.bddmanager.getConnectionManager().createStatement();
-                String requete = "SELECT * FROM airports WHERE aita = \" "+ obj + "\"";
+                String requete = "SELECT * FROM airports WHERE aita = \""+ key + "\"";
                 ResultSet rs = st.executeQuery(requete);
                 
                 while(rs.next()){
@@ -94,6 +92,15 @@ public class AirportsDao extends Dao{
     }
         return airport;
     }
+
+    @Override
+    public boolean update(Airports airport) {
+        return true;
+    }
+
+
+  
+
 
     
 }

@@ -73,27 +73,27 @@ public class AirportsDaoTest {
     /**
      * Test of getAll method, of class AirportsDao.
      */
-//    @Test
-//    public void testGetAll() {
-//        System.out.println("getAll");
-//        String expResult = "";
-//        String result ="";
-//        
-//        AirportsDao instance = new AirportsDao();
-//        
-//        
-//        ArrayList<Airports> listeaireport = instance.getAll();
-//        
-//        
-//        for (Airports airports : listeaireport) {
-//            result += airports.toString();
-//            expResult += instance.find(airports.getAita());
-//            System.out.println("1 --- " + result);
-//            System.out.println("2 ---"+ expResult);
-//        }
-//        assertEquals(expResult, result);
-//        
-//    }
+    @Test
+    public void testGetAll() {
+        System.out.println("getAll");
+        String expResult = "";
+        String result ="";
+        
+        AirportsDao instance = new AirportsDao();
+        
+        
+        ArrayList<Airports> listeaireport = instance.getAll();
+        
+        
+        for (Airports airports : listeaireport) {
+            result += airports.toString();
+            expResult += instance.find(airports.getAita());
+            System.out.println("1 --- " + result);
+            System.out.println("2 ---"+ expResult);
+        }
+        assertEquals(expResult, result);
+        
+    }
 
     /**
      * Test of getmanager method, of class AirportsDao.
@@ -113,13 +113,15 @@ public class AirportsDaoTest {
 //     * Test of fine method, of class AirportsDao.
 //     */
     @Test
-    public void testFine() {
-        System.out.println("fine");
+    public void testFind() {
+        System.out.println("find");
         AirportsDao airportDAO = new AirportsDao();
         // assign primary key
         String primary_key = "DXB";
         // assign result exemple
-        String expResult = "Airport{aita=DXB, city=Dubaï, country=Émirats arabes unis}";
+        String expResult = "Airports{aita=DXB, city=Dubaï, pays=Émirats arabes unis}";
+        
+        System.out.println(airportDAO.find(primary_key).toString());
         // find airport
         String result = airportDAO.find(primary_key).toString();
         
