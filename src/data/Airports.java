@@ -5,6 +5,8 @@
  */
 package data;
 
+import java.util.Objects;
+
 /**
  *
  * @author Formation
@@ -42,6 +44,39 @@ public class Airports {
 
     public void setPays(String pays) {
         this.pays = pays;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.aita);
+        hash = 53 * hash + Objects.hashCode(this.city);
+        hash = 53 * hash + Objects.hashCode(this.pays);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Airports other = (Airports) obj;
+        if (!Objects.equals(this.aita, other.aita)) {
+            return false;
+        }
+        if (!Objects.equals(this.city, other.city)) {
+            return false;
+        }
+        if (!Objects.equals(this.pays, other.pays)) {
+            return false;
+        }
+        return true;
     }
    
    
