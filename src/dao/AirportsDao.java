@@ -18,22 +18,24 @@ import data.Airports;
  */
 public class AirportsDao extends Dao{
 
-    public AirportsDao() {
-        super();
-    }
-    
     @Override
-    public boolean creer(Object obj) {
-        return true;
+    public Object create(Object obj) {
+        return obj;
     }
 
     @Override
-    public boolean supprimer(Object obj) {
-        return true;
+    public void delete(Object obj) {
+        
     }
 
+    @Override
+    public Object update() {
+        return 0;
+    }
+
+    @Override
     public ArrayList getAll() {
-        ArrayList<Airports> listeairports = new ArrayList<>();
+         ArrayList<Airports> listeairports = new ArrayList<>();
         
         if(this.bddmanager.connect()) {
             
@@ -44,9 +46,9 @@ public class AirportsDao extends Dao{
                 
                 while(rs.next()){
                     
-                    Airports el = new Airports(rs.getString("aita"), rs.getString("city"),
+                    Airports airport = new Airports(rs.getString("aita"), rs.getString("city"),
                             rs.getString("pays"));
-                    listeairports.add(el);
+                    listeairports.add(airport);
                 }
                 
             } catch (SQLException ex) {
@@ -61,21 +63,37 @@ public class AirportsDao extends Dao{
         return listeairports;
     }
         return listeairports;
-        
-        
-        
-        
-        
-        
-    }
-
-    public LiaisonSql getmanager() {
-        return bddmanager;
     }
 
     @Override
-    public ArrayList fine() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Object find(Object obj) {
+        Airports airport = new Airports();
+        if(this.bddmanager.connect()) {
+            
+            try {
+                Statement st = this.bddmanager.getConnectionManager().createStatement();
+                String requete = "SELECT * FROM airports WHERE aita = \" "+ obj + "\"";
+                ResultSet rs = st.executeQuery(requete);
+                
+                while(rs.next()){
+                    airport.setAita(rs.getString("aita"));
+                    airport.setCity(rs.getString("City"));
+                    airport.setPays(rs.getString("Pays"));
+                }
+                
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                return airport;
+            }
+            
+            
+            
+        } else {
+        
+        return airport;
     }
+        return airport;
+    }
+
     
 }

@@ -20,9 +20,12 @@ public abstract class Dao<T> {
         this.bddmanager = LiaisonSql.getInstance();
     }
 
-public abstract boolean creer(T obj);
-public abstract boolean supprimer(T obj);
-public abstract ArrayList<T> fine();
+public abstract T create(T obj);
+public abstract void delete(T obj);
+public abstract T update();
+public abstract ArrayList<T> getAll();
+public abstract T find(T obj);
+
 
 }
 

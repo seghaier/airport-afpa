@@ -22,6 +22,10 @@ public class Airports {
         this.pays = pays;
     }
 
+    public Airports() {
+    }
+    
+
     public String getAita() {
         return aita;
     }
