@@ -55,7 +55,34 @@ public class AirportsDao extends Dao<Airports,String>{
     }
 
     @Override
-    public boolean delete(Airports airports) {
+    public boolean delete(Airports air) {
+        
+        boolean success = false;
+
+        if (this.bddmanager.connect()) {
+
+            try {
+
+                // create requete 
+                String requete = "DELETE FROM airports WHERE aita LIKE ?";
+                // prepared requete 
+                PreparedStatement pst = this.bddmanager.getConnectionManager().prepareStatement(requete);
+                // insert value in requete
+                pst.setString(1, air.getAita());
+                // excute delete row in table
+                int insert = pst.executeUpdate();
+                // if insert in table 
+                if (insert != 0) {
+                    success = true;
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                return success;
+            }
+
+        } else {
+            return success;
+        }
         
         return true;
     }

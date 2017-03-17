@@ -53,9 +53,10 @@ public class AirportsDaoTest {
 //
 //        // find airport  create 
         Airports expResult = airportDao.find(airport.getAita());
-       // System.out.println(expResult.getAita());
-//        // if find aita is empty
+        System.out.println(expResult.getAita());
+        // if find aita is empty
         if (expResult.getAita()!=null) {
+             airportDao.delete(airport);
         } 
 //            // insert airport in table
             Airports result = airportDao.create(airport);   
@@ -64,21 +65,26 @@ public class AirportsDaoTest {
             assertEquals(expResult, result);          
         
     }
-//
-//    /**
-//     * Test of supprimer method, of class AirportsDao.
-//     */
-//    @Test
-//    public void testSupprimer() {
-//        System.out.println("supprimer");
-//        Object obj = null;
-//        AirportsDao instance = new AirportsDao();
-//        boolean expResult = false;
-//        boolean result = instance.supprimer(obj);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+
+    /**
+     * Test of supprimer method, of class AirportsDao.
+     */
+    @Test
+    public void testDelete() {
+         System.out.println("delete");
+        AirportsDao airportDao = new AirportsDao();
+        Airports airport = new Airports("ROM", "Rome", "Italie");
+        boolean result = false; 
+
+        Airports airportFind = airportDao.find(airport.getAita());             
+
+        if(airportFind.getAita()== null){
+           airport= airportDao.create(airport);
+        }            
+        result= airportDao.delete(airport);       
+
+        assertEquals(true, result);          
+    }
 
     /**
      * Test of getAll method, of class AirportsDao.
@@ -98,8 +104,8 @@ public class AirportsDaoTest {
         for (Airports airports : listeaireport) {
             result += airports.toString();
             expResult += instance.find(airports.getAita());
-            System.out.println(" --- " + result +" " + expResult);
-            //System.out.println("2 ---"+ expResult);
+            System.out.println(" --- " + result +"\n\r " + expResult);
+            System.out.println();
         }
         assertEquals(expResult, result);
         
