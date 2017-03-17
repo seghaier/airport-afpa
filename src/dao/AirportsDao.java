@@ -24,11 +24,11 @@ public class AirportsDao extends Dao<Airports,String>{
         
         Airports airportCreate = new Airports();
         if (this.bddmanager.connect()) {
-
+            
             try {
 
                 // create requete 
-                String requete = "INSERT INTO airports (aita, city, country) VALUES (?,?,?)";
+                String requete = "INSERT INTO airports (aita, city, pays) VALUES (?,?,?)";
                 // prepared requete 
                 PreparedStatement pst = this.bddmanager.getConnectionManager().prepareStatement(requete);
                 // insert value in requete
