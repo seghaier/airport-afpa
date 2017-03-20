@@ -114,20 +114,36 @@ public class AirportsDaoTest {
     /**
      * Test of getmanager method, of class AirportsDao.
      */
-//    @Test
-//    public void testGetmanager() {
-//        System.out.println("getmanager");
-//        AirportsDao instance = new AirportsDao();
-//        LiaisonSql expResult = null;
-//        LiaisonSql result = instance.getmanager();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of fine method, of class AirportsDao.
-//     */
+    @Test
+    public void testupdate() {
+       System.out.println("update");
+        Airports airport = new Airports("BRC", "Barcelone", "Espagne");
+        AirportsDao airportDao = new AirportsDao();         
+        Airports findAirport = airportDao.find(airport.getAita());        
+        
+        if (!airportDao.update(findAirport)) {
+            
+            Airports resultAirport = airportDao.create(airport);  
+            
+            findAirport = airportDao.find(resultAirport.getAita());    
+        }
+            
+            findAirport.setCity("update Barcelone");
+            findAirport.setPays("update Espagne");         
+            
+   
+        
+        boolean result = airportDao.update(findAirport);   
+        boolean expResult = true;
+        
+        result= airportDao.delete(airport);
+        assertEquals(expResult, result);
+    
+    }
+
+    /**
+     * Test of fine method, of class AirportsDao.
+     */
     @Test
     public void testFind() {
         System.out.println("find");

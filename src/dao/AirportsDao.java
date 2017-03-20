@@ -153,9 +153,37 @@ public class AirportsDao extends Dao<Airports,String>{
 
     @Override
     public boolean update(Airports airport) {
-        
-        return true;
+        boolean success = false;
+
+        if (this.bddmanager.connect()) {
+
+            try {
+
+                // create requete 
+                String requete = "Update airports set city = ?,pays = ? WHERE aita LIKE ?";
+                // prepared requete 
+                PreparedStatement pst = this.bddmanager.getConnectionManager().prepareStatement(requete);
+                // insert value in requete
+                pst.setString(1, airport.getCity());
+                pst.setString(2, airport.getPays());
+                pst.setString(3, airport.getAita());
+                // excute update row in table
+                int insert = pst.executeUpdate();
+                // if insert in table 
+                if (insert != 0) {
+                    success = true;
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                return success;
+            }
+
+        } else {
+            return success;
+        }
+        return success;
     }
+    
 
 
   
