@@ -136,18 +136,18 @@ public class AccessSiteDao extends Dao<AccessSite, Object>{
 
     @Override
     public AccessSite find(Object key) {
-        Airports accessFind = new Airports();
+        AccessSite accessFind = new AccessSite();
         if(this.bddmanager.connect()) {
             
             try {
                 Statement st = this.bddmanager.getConnectionManager().createStatement();
-                String requete = "SELECT * FROM airports WHERE aita = \""+ key + "\"";
+                String requete = "SELECT * FROM access_site WHERE user_id = \""+ key + "\"";
                 ResultSet rs = st.executeQuery(requete);
                 
                 while(rs.next()){
-                    accessFind.setAita(rs.getString("aita"));
-                    accessFind.setCity(rs.getString("city"));
-                    accessFind.setPays(rs.getString("pays"));
+                    accessFind.setUser_id(rs.getLong("user_id"));
+                    accessFind.setNickname(rs.getString("nickname"));
+                    accessFind.setPassword(rs.getString("password"));
                 }
                 
             } catch (SQLException ex) {
